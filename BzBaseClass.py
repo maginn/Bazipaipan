@@ -8,9 +8,9 @@ class GanClass:
     def __init__(self, ganid):
        self.ganid=ganid
 
-    #获得十神名称
+    #获得十神名称,注意此方法为，自身天干是对方的什么十神，即需要输入的是日干，得出的结果是针对日干的十神
     def getSSName(self,tgid):
-        return DictClass.ShishenName[BZBaseTools.ShishenList[GanClass.ganid][tgid]]
+        return DictClass.ShishenName[BZBaseTools.ShishenList[tgid][GanClass.ganid]]
 
 
     def getGanName(self):
