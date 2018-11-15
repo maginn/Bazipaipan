@@ -17,7 +17,7 @@ class GanClass:
         return DictClass.Gan[self.ganid]
 
     def getWuxingName(self):
-        return DictClass.wuxing[self.ganid]
+        return DictClass.Wuxing[self.ganid]
 
     def getWuxingshengwang(self,zhiid):
         id=BZBaseTools.WuxingShengwang[zhiid][BZBaseTools.ganwuxing[self.ganid]]
@@ -50,7 +50,7 @@ class ZhiClass:
 
     def getJijie(self):
         id=BZBaseTools.Jijie[self.zhiid]
-        return  DictClass.jijie[id]
+        return  DictClass.Jijie[id]
 
 
 class ZhiYangClass(GanClass):
@@ -73,6 +73,10 @@ class ZhuClass:
         id=BZBaseTools.Shierchangsheng[tg.ganid][dz.zhiid]
         return DictClass.ShierchangshengName[id]
 
+    def getNayin(self):
+       return DictClass.Nayin[self.tiangan.getGanName()+self.dizhi.getZhiName()]
+
+
 #八字原局
 class BZyjClass:
     yZhu=None
@@ -87,9 +91,12 @@ class BZyjClass:
         self.tZhu=tZhu
 
     def getPaiPan(self):
-        print("年：" + self.yZhu.tiangan.getGanName() + " " + self.yZhu.dizhi.getZhiName())
-        print("月：" + self.mZhu.tiangan.getGanName() + " " + self.mZhu.dizhi.getZhiName())
-        print("日：" + self.dZhu.tiangan.getGanName() + " " + self.dZhu.dizhi.getZhiName())
-        print("时：" + self.tZhu.tiangan.getGanName() + " " + self.tZhu.dizhi.getZhiName())
+        print("年：" + self.yZhu.tiangan.getGanName() + " " + self.yZhu.dizhi.getZhiName(),self.yZhu.getNayin())
+
+        print("月：" + self.mZhu.tiangan.getGanName() + " " + self.mZhu.dizhi.getZhiName(),self.mZhu.getNayin())
+
+        print("日：" + self.dZhu.tiangan.getGanName() + " " + self.dZhu.dizhi.getZhiName(),self.dZhu.getNayin())
+
+        print("时：" + self.tZhu.tiangan.getGanName() + " " + self.tZhu.dizhi.getZhiName(),self.tZhu.getNayin())
 
 
