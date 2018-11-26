@@ -1,3 +1,6 @@
+
+
+
 class BZBaseTools:
 
     ganwuxing=[2,2,3,3,4,4,0,0,1,1]
@@ -120,4 +123,38 @@ class BZBaseTools:
     def getShishenName(tg1,tg2):
         value=BZBaseTools.ShishenList[tg1][tg2]
         print(value)
+
+
+
+
+
+    """
+    比如从n个元素选取k个出来组合，根据数学知识可知总共组合数为Cnk。
+    
+    代码实现的基本思想就是，先选取一个元素出来，接下来任务就相当于是对后面的元素选取k-1个出来组合。这样就形成了递归调用！
+    """
+    def Combinations(self,L, k):
+        """List all combinations: choose k elements from list L"""
+        n=len(L)
+        result=[]  # To Place Combination result
+        for i in range(n - k + 1):
+            if k > 1:
+                newL=L[i + 1:]
+                Comb= self.Combinations(newL, k - 1)
+                for item in Comb:
+                    item.insert(0, L[i])
+                    result.append(item)
+            else:
+                result.append([L[i]])
+        #return result, len(result)  可以返回两个参数！
+        return result
+
+
+
+
+if __name__ == '__main__':
+    l=[1, 6, 9, 4,1]
+    tools=BZBaseTools()
+    print(tools.Combinations(l,2))
+    print("======")
 

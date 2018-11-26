@@ -1,6 +1,5 @@
 import sxtwl
 import sys
-from BZBaseTools import BZBaseTools
 from StaticDict import DictClass
 import BzBaseClass
 
@@ -38,7 +37,7 @@ class BzPaipan:
         self.dLunar=day.Ldi
         self.tLunar=t
 
-        # 找到所有节气
+        # 找到节气
         jieqilist=day.cur_jq
 
 
