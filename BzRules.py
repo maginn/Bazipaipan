@@ -8,6 +8,7 @@ class Bzrules:
     #判断天干六合：tg1-tg2的绝对值的5，则合。
     #输入参数为天干的数组，输出为六合与合化的结果
     # #判断rule1_tghe结果是否有效，即合化否，如果合化则增加权重。
+    @staticmethod
     def getTgHe(L):
         result=[]
         tool=BZBaseTools()
@@ -25,6 +26,7 @@ class Bzrules:
 
     #0甲6庚相冲、1乙7辛相冲、8壬2丙相冲、9癸3丁相冲，5戊4己土居中央，故无冲
     #甲属阳木，为东方，庚属阳金，为西方，阳与阳同类相斥，金与木相克，而且二者方位相反，故曰相冲。其余之干相冲类推。
+    @staticmethod
     def getTgChong(L):
         result=[]
         tool=BZBaseTools()
@@ -61,6 +63,7 @@ class Bzrules:
 
     #地支六合===========
     #0子1丑合化土,2寅11亥合化木,3卯10戌合化火,4辰9酉合化金,5巳8申合化水,6午7未合,化土化土
+    @staticmethod
     def getZhiHe(L):
         result=[]
         tool=BZBaseTools()
@@ -79,6 +82,7 @@ class Bzrules:
 
     #地支六冲==========
     #0子6午相冲、1丑7未相冲、2寅8申相冲、3卯9酉相冲、4辰10戌相冲、5巳11亥相冲
+    @staticmethod
     def getZhiChong(L):
         result=[]
         tool=BZBaseTools()

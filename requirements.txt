@@ -1,0 +1,3 @@
+# BaZi Calculator Dependencies
+# Shouxing Astronomical Calendar library (寿星天文历)
+sxtwl>=1.0.0

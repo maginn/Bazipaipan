@@ -1,0 +1,6 @@
+include README.md
+include requirements.txt
+include LICENSE
+recursive-include bazi *.py
+global-exclude *.pyc
+global-exclude __pycache__

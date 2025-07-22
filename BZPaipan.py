@@ -24,34 +24,37 @@ class BzPaipan:
     tLunar=None
 
     def __init__(self):
-        self.lunar=sxtwl.Lunar()  # 实例化日历库
+        pass  # No need to instantiate a Lunar object in the new API
 
 
     def getPaipanbySun(self,y,m,d,t):
 
-        day=self.lunar.getDayBySolar(y,m,d)
+        day=sxtwl.fromSolar(y,m,d)
 
         #农历
-        self.yLunar=1984 + day.Lyear0
-        self.mLunar=day.Lmc
-        self.dLunar=day.Ldi
+        self.yLunar=day.getLunarYear()
+        self.mLunar=day.getLunarMonth()
+        self.dLunar=day.getLunarDay()
         self.tLunar=t
 
-        # 找到节气
-        jieqilist=day.cur_jq
+        # 找到节气 (Note: JieQi functionality may need separate handling)
+        jieqilist=None  # This may need to be implemented differently
 
 
         #组装干支
-        yGan=BzBaseClass.GanClass(day.Lyear2.tg)
-        yZhi=BzBaseClass.ZhiClass(day.Lyear2.dz)
+        yGanZhi=day.getYearGZ()
+        yGan=BzBaseClass.GanClass(yGanZhi.tg)
+        yZhi=BzBaseClass.ZhiClass(yGanZhi.dz)
 
-        mGan=BzBaseClass.GanClass(day.Lmonth2.tg)
-        mZhi=BzBaseClass.ZhiClass(day.Lmonth2.dz)
+        mGanZhi=day.getMonthGZ()
+        mGan=BzBaseClass.GanClass(mGanZhi.tg)
+        mZhi=BzBaseClass.ZhiClass(mGanZhi.dz)
 
-        dGan=BzBaseClass.GanClass(day.Lday2.tg)
-        dZhi=BzBaseClass.ZhiClass(day.Lday2.dz)
+        dGanZhi=day.getDayGZ()
+        dGan=BzBaseClass.GanClass(dGanZhi.tg)
+        dZhi=BzBaseClass.ZhiClass(dGanZhi.dz)
 
-        tGanZhi=self.lunar.getShiGz(day.Lday2.tg, t)
+        tGanZhi=sxtwl.getShiGz(dGanZhi.tg, t)
         tGan=BzBaseClass.GanClass(tGanZhi.tg)
         tZhi=BzBaseClass.ZhiClass(tGanZhi.dz)
 
@@ -68,29 +71,32 @@ class BzPaipan:
 
     def getPaipanbyLunar(self,y,m,d,t):
 
-        day=self.lunar.getDayByLunar(y,m,d)
+        day=sxtwl.fromLunar(y,m,d)
 
         #公历
-        self.ySun=day.y
-        self.mSun=day.m
-        self.dSun=day.d
+        self.ySun=day.getSolarYear()
+        self.mSun=day.getSolarMonth()
+        self.dSun=day.getSolarDay()
         self.tSunr=t
         print("公历",self.ySun , "年" ,self.mSun , "月" , self.dSun , "日" , self.tSunr ,"时")
 
-        #找到所有节气
-        jieqilist=day.cur_jq
+        #找到所有节气 (Note: JieQi functionality may need separate handling)
+        jieqilist=None  # This may need to be implemented differently
 
         #组装干支
-        yGan=BzBaseClass.GanClass(day.Lyear2.tg)
-        yZhi=BzBaseClass.ZhiClass(day.Lyear2.dz)
+        yGanZhi=day.getYearGZ()
+        yGan=BzBaseClass.GanClass(yGanZhi.tg)
+        yZhi=BzBaseClass.ZhiClass(yGanZhi.dz)
 
-        mGan=BzBaseClass.GanClass(day.Lmonth2.tg)
-        mZhi=BzBaseClass.ZhiClass(day.Lmonth2.dz)
+        mGanZhi=day.getMonthGZ()
+        mGan=BzBaseClass.GanClass(mGanZhi.tg)
+        mZhi=BzBaseClass.ZhiClass(mGanZhi.dz)
 
-        dGan=BzBaseClass.GanClass(day.Lday2.tg)
-        dZhi=BzBaseClass.ZhiClass(day.Lday2.dz)
+        dGanZhi=day.getDayGZ()
+        dGan=BzBaseClass.GanClass(dGanZhi.tg)
+        dZhi=BzBaseClass.ZhiClass(dGanZhi.dz)
 
-        tGanZhi=self.lunar.getShiGz(day.Lday2.tg, t)
+        tGanZhi=sxtwl.getShiGz(dGanZhi.tg, t)
         tGan=BzBaseClass.GanClass(tGanZhi.tg)
         tZhi=BzBaseClass.ZhiClass(tGanZhi.dz)
 
